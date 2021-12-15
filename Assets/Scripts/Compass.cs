@@ -10,7 +10,7 @@ public class Compass : MonoBehaviour {
     public bool startTracking = false;
     private GameObject Player;
     void Start() {
-        Player = GameObject.Find("Capsule");
+        Player = GameObject.Find("Player");
         StartCoroutine(InitializeLocation());
     }
 

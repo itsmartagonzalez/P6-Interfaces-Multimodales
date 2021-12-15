@@ -12,7 +12,6 @@ using Mapbox.Utils;
 
 public class GPS : MonoBehaviour {
 
-    private bool locationActivated = false;
     public float latitude = 0f;
     public float longitude = 0f;
     // Start is called before the first frame update
@@ -26,18 +25,9 @@ public class GPS : MonoBehaviour {
         while (!compass.GetComponent<Compass>().startTracking) {
             yield return new WaitForSeconds(1);
         }
-        locationActivated = true;
         latitude = Input.location.lastData.latitude;
         longitude = Input.location.lastData.longitude;
     }
-
-    // Update is called once per frame
-    /*void Update() {
-        if (locationActivated) {
-        
-
-        }
-    }*/
 
     public void ChangeLocation() {
         Text locText =  GameObject.Find("InputField/Text").GetComponent<Text>();
