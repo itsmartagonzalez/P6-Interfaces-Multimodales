@@ -27,19 +27,20 @@ public class GPS : MonoBehaviour {
         }
         latitude = Input.location.lastData.latitude;
         longitude = Input.location.lastData.longitude;
+        float altitude = Input.location.lastData.altitude;
+        Text button =  GameObject.Find("Go Home Button/location").GetComponent<Text>();
+        button.text = "Long:" + longitude + "        Lat:" + latitude + "        Alt:" + altitude;
     }
 
     public void ChangeLocation() {
         Text locText =  GameObject.Find("InputField/Text").GetComponent<Text>();
         string[] loc = locText.text.Split(',');
-        Debug.Log("->" + float.Parse(loc[0], CultureInfo.InvariantCulture) + " " + float.Parse(loc[1], CultureInfo.InvariantCulture));
         Vector2d localization = new Vector2d(float.Parse(loc[0], CultureInfo.InvariantCulture), float.Parse(loc[1], CultureInfo.InvariantCulture));
         AbstractMap map = FindObjectOfType<AbstractMap>();
         map.UpdateMap(localization);
         InputField input = GameObject.Find("InputField").GetComponent<InputField>();
         input.Select();
         input.text = "";
-        //placeHolder.GetComponent<Text>().gameObject.SetActive(true);
     }
 
     public void GoHome() {
